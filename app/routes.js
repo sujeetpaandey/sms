@@ -121,6 +121,82 @@ module.exports = function(app) {
     });
 
 
+    app.get('/api/inboxes', function(req, response) {
+        var options = {
+            "method": "GET",
+            "hostname": "api.textlocal.in",
+            "port": null,
+            "path": "https://api.textlocal.in/get_messages/?apikey=pMUR5xeFRbU-MbUk81vdOf0sVEA0zAnRgT3tZvGyIY&inbox_id=763865",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded",
+                "cache-control": "no-cache",
+            }
+        };
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                console.log(body.toString());
+                response.send(body.toString());
+            });
+        });
+
+        req.write(qs.stringify({ themeName: 'mobile' }));
+        req.end();
+    });
+
+    // getInboxes
+    app.get('/api/inboxes1', function(req, response) {
+        // var options = {
+        //     "method": "POST",
+        //     //"hostname": "https://api.textlocal.in",
+        //     "port": null,
+        //     "path": "https://api.textlocal.in/get_inboxes/?apikey=pMUR5xeFRbU-5DBNEXrF2ZYIEw4SPtJ5QF6gLs1b6H",
+        //     "headers": {
+        //         "content-type": "application/x-www-form-urlencoded"
+        //     }
+        // };
+
+        var apiKey = 'pMUR5xeFRbU-5DBNEXrF2ZYIEw4SPtJ5QF6gLs1b6H';
+
+        var options = {
+            "method": "GET",
+            //"hostname": "https://api.textlocal.in",
+            "port": null,
+            "path": "https://api.textlocal.in/get_inboxes/" + apiKey,
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        //pMUR5xeFRbU-5DBNEXrF2ZYIEw4SPtJ5QF6gLs1b6H
+        //nitinchandra.nitin@gmail.com
+        //India@1234
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                //console.log(body.toString());
+                response.send(body.toString());
+            });
+        });
+
+        req.write(qs.stringify({}));
+        req.end();
+    });
+
     // application -------------------------------------------------------------
     app.get('*', function(req, res) {
         res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)

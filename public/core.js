@@ -4,13 +4,13 @@ function mainController($scope, $http) {
     $scope.formData = {};
 
     // when landing on the page, get all messages and show them
-    $http.get('/api/messages')
-        .success(function(data) {
-            $scope.messages = data;
-        })
-        .error(function(data) {
-            console.log('Error: ' + data);
-        });
+    // $http.get('/api/messages')
+    //     .success(function(data) {
+    //         $scope.messages = data;
+    //     })
+    //     .error(function(data) {
+    //         console.log('Error: ' + data);
+    //     });
 
     // when submitting the add form, send the text to the node API
     $scope.saveMessage = function() {
@@ -31,6 +31,17 @@ function mainController($scope, $http) {
         $http.delete('/api/messages/' + id)
             .success(function(data) {
                 $scope.messages = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+    // get inboxes
+    $scope.getInboxes = function() {
+        $http.get('/api/inboxes', {})
+            .success(function(data) {
+                $scope.inboxDetails = data;
             })
             .error(function(data) {
                 console.log('Error: ' + data);
@@ -87,5 +98,6 @@ function mainController($scope, $http) {
             });
     };
 
-    $scope.getSmsCount();
+    //$scope.getSmsCount();
+    $scope.getInboxes();
 }

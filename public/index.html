@@ -44,30 +44,32 @@
     <div class="container">
 
         <!-- HEADER AND TODO COUNT -->
-        <div class="jumbotron text-center">
+        <!-- <div class="jumbotron text-center">
             <b>Remaining SMS - <span class="label label-info">{{ smsCounts }}</span></b>
+        </div> -->
+
+        <div style="padding:10px" class="jumbotron text-center">
+            TYPE <br> COCACOLA [SPACE] YOUR MESSAGE<br> Send to <br>
+            <9220592205>
         </div>
 
         <!-- FORM TO SEND MESSAGE -->
-        <div id="todo-form" class="row">
+        <!-- <div id="todo-form" class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
                 <form>
                     <div class="form-group">
-
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                         <input type="text" class="form-control input-lg text-center" placeholder="Enter mobile number" ng-model="formData.mobile">
                         <br>
                         <input style="display: none;" type="text" class="form-control input-lg text-center" placeholder="Enter message" ng-model="formData.message">
                     </div>
 
-                    <!-- sendMessage() WILL SEND NEW MESSAGE -->
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="sendMessage()">Send</button>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <!-- MESSAGES LIST -->
-        <div id="messages-list" class="row">
+        <!-- <div id="messages-list" class="row">
             <div class="col-sm-12 col-sm-offset-12">
                 <table class="table">
                     <thead class="thead-inverse">
@@ -83,6 +85,33 @@
                             <th scope="row">{{$index + 1}}</th>
                             <td>{{m.mobile}}</td>
                             <td>{{m.message}}</td>
+                            <td>{{m.date | date: 'EEEE, MMMM M, yyyy - HH:mm:ss a'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+
+        <div id="messages-list" class="row">
+            <div class="col-sm-12 col-sm-offset-12">
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Message Id</th>
+                            <th>Mobile Number</th>
+                            <th>Message</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in inboxDetails.messages">
+                            <th scope="row">{{$index + 1}}</th>
+                            <td>{{m.id}}</td>
+                            <td>{{m.number}}</td>
+                            <td>{{m.message}}</td>
+                            <td>{{m.status}}</td>
                             <td>{{m.date | date: 'EEEE, MMMM M, yyyy - HH:mm:ss a'}}</td>
                         </tr>
                     </tbody>
