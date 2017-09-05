@@ -1,0 +1,101 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Todo App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        
+        body {
+            padding-top: 50px;
+        }
+        
+        #todo-list {
+            margin-bottom: 30px;
+        }
+        
+        #todo-form {
+            margin-bottom: 50px;
+        }
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="core.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+
+<body ng-controller="mainController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <b>Remaining SMS - <span class="label label-info">{{ smsCounts }}</span></b>
+        </div>
+
+        <!-- FORM TO SEND MESSAGE -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Enter mobile number" ng-model="formData.mobile">
+                        <br>
+                        <input style="display: none;" type="text" class="form-control input-lg text-center" placeholder="Enter message" ng-model="formData.message">
+                    </div>
+
+                    <!-- sendMessage() WILL SEND NEW MESSAGE -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="sendMessage()">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- MESSAGES LIST -->
+        <div id="messages-list" class="row">
+            <div class="col-sm-12 col-sm-offset-12">
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Mobile</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="m in messages">
+                            <th scope="row">{{$index + 1}}</th>
+                            <td>{{m.mobile}}</td>
+                            <td>{{m.message}}</td>
+                            <td>{{m.date | date}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="text-center text-muted">
+            <p>A demo by <a href="#">S.P.</a></p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
