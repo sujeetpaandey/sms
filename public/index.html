@@ -83,7 +83,7 @@
                             <th scope="row">{{$index + 1}}</th>
                             <td>{{m.mobile}}</td>
                             <td>{{m.message}}</td>
-                            <td>{{m.date | date}}</td>
+                            <td>{{m.date | date: 'EEEE, MMMM M, yyyy - HH:mm:ss a'}}</td>
                         </tr>
                     </tbody>
                 </table>

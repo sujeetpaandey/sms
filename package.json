@@ -1,14 +1,26 @@
 {
-  "name": "node-todo",
-  "version": "0.0.0",
-  "description": "Simple todo application.",
-  "main": "server.js",
-  "author": "Scotch",
-  "dependencies": {
-    "body-parser": "^1.5.2",
-    "express": "^4.7.4",
-    "method-override": "^2.1.3",
-    "mongoose": "~3.6.2",
-    "morgan": "~1.2.2"
-  }
+    "name": "sms-app",
+    "version": "1.0.0",
+    "description": "Sample SMS App",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sujeetpaandey/nodeapp.git"
+    },
+    "author": "Sujeet Pandey",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.4.3",
+        "express": "^4.13.4",
+        "method-override": "^2.1.3",
+        "mongoose": "^4.4.12",
+        "morgan": "^1.1.1"
+    },
+    "bugs": {
+        "url": "https://github.com/sujeetpaandey/nodeapp/issues"
+    },
+    "homepage": "https://github.com/sujeetpaandey/nodeapp#readme"
 }

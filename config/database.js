@@ -1,4 +1,4 @@
 module.exports = {
-    //url : 'mongodb://dev-sms:dev-sms@ds125774.mlab.com:25774/dev-sms'
-    remoteUrl: 'mongodb://qauser:qauser@ds151702.mlab.com:51702/qa-blume'
+    remoteUrl: 'mongodb://dbuser:dbpassword@ds125774.mlab.com:25774/dev-sms'
+    //remoteUrl: 'mongodb://diagnostic:diagnostic@ds153400.mlab.com:53400/diagnostic'
 }
