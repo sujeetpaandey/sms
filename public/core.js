@@ -20,7 +20,6 @@ function mainController($scope, $http) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
                 $scope.messages = data;
                 $scope.getSmsCount();
-                console.log(data);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
@@ -39,9 +38,9 @@ function mainController($scope, $http) {
     };
 
 
-    // get sms remaining counts
+    // get remaining sms counts
     $scope.getSmsCount = function() {
-        $http.get('http://2factor.in/API/V1/96cd4ca5-9205-11e7-94da-0200cd936042/BAL/SMS')
+        $http.get('/api/counts', {})
             .success(function(data) {
                 $scope.smsCounts = data.Details;
             })
@@ -50,14 +49,13 @@ function mainController($scope, $http) {
             });
     };
 
-    // send OTP sms
+    // send sample otp sms
     $scope.sendMessage = function() {
-        $http.get('http://2factor.in/API/V1/96cd4ca5-9205-11e7-94da-0200cd936042/SMS/' + $scope.formData.mobile + '/AUTOGEN')
+        $http.post('api/send/message', $scope.formData)
             .success(function(data) {
-                console.log(data);
                 if (data.Status === 'Success') {
                     $scope.saveMessage();
-                    $scope.getSmsCount();
+                    alert('Message sent');
                 } else {
                     alert('Message not sent');
                 }
@@ -77,7 +75,6 @@ function mainController($scope, $http) {
         };
         $http.post(url, body)
             .success(function(data) {
-                console.log(data);
                 if (data.Status === 'Success') {
                     $scope.saveMessage();
                     alert('Test OTP Message sent');

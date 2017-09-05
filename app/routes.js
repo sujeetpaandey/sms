@@ -1,5 +1,8 @@
 var Messages = require('./models/messages');
 
+var qs = require("querystring");
+var http = require("http");
+
 module.exports = function(app) {
 
     // api ---------------------------------------------------------------------
@@ -54,6 +57,69 @@ module.exports = function(app) {
             });
         });
     });
+
+
+    // getCounts
+    app.get('/api/counts', function(req, response) {
+        var options = {
+            "method": "GET",
+            "hostname": "2factor.in",
+            "port": null,
+            "path": "/API/V1/96cd4ca5-9205-11e7-94da-0200cd936042/BAL/SMS",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                //console.log(body.toString());
+                response.send(body.toString());
+            });
+        });
+
+        req.write(qs.stringify({}));
+        req.end();
+    });
+
+
+    // sendSms
+    app.post('/api/send/message', function(req, response) {
+        var options = {
+            "method": "GET",
+            "hostname": "2factor.in",
+            "port": null,
+            "path": "/API/V1/96cd4ca5-9205-11e7-94da-0200cd936042/SMS/" + req.body.mobile + "/AUTOGEN",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded"
+            }
+        };
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                //console.log(body.toString());
+                response.send(body.toString());
+            });
+        });
+
+        req.write(qs.stringify({}));
+        req.end();
+    });
+
 
     // application -------------------------------------------------------------
     app.get('*', function(req, res) {
