@@ -48,6 +48,17 @@ function mainController($scope, $http) {
             });
     };
 
+    // get inboxes
+    $scope.getInboxesXml = function() {
+        $http.get('/api/inboxes/xml', {})
+            .success(function(data) {
+                $scope.inboxXmlDetails = data;
+            })
+            .error(function(data) {
+                console.log('Error: ' + data);
+            });
+    };
+
 
     // get remaining sms counts
     $scope.getSmsCount = function() {
@@ -100,4 +111,5 @@ function mainController($scope, $http) {
 
     //$scope.getSmsCount();
     $scope.getInboxes();
+    $scope.getInboxesXml();
 }

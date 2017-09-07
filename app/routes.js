@@ -3,6 +3,9 @@ var Messages = require('./models/messages');
 var qs = require("querystring");
 var http = require("http");
 
+var xml = require('xml');
+var jsonxml = require('jsontoxml');
+
 module.exports = function(app) {
 
     // api ---------------------------------------------------------------------
@@ -142,8 +145,38 @@ module.exports = function(app) {
 
             res.on("end", function() {
                 var body = Buffer.concat(chunks);
-                console.log(body.toString());
                 response.send(body.toString());
+            });
+        });
+
+        req.write(qs.stringify({ themeName: 'mobile' }));
+        req.end();
+    });
+	
+	app.get('/api/inboxes/xml', function(req, response) {
+        var options = {
+            "method": "GET",
+            "hostname": "api.textlocal.in",
+            "port": null,
+            "path": "https://api.textlocal.in/get_messages/?apikey=pMUR5xeFRbU-MbUk81vdOf0sVEA0zAnRgT3tZvGyIY&inbox_id=763865",
+            "headers": {
+                "content-type": "application/x-www-form-urlencoded",
+                "cache-control": "no-cache",
+            }
+        };
+
+        var req = http.request(options, function(res) {
+            var chunks = [];
+
+            res.on("data", function(chunk) {
+                chunks.push(chunk);
+            });
+
+            res.on("end", function() {
+                var body = Buffer.concat(chunks);
+                var xmlObj = jsonxml(body.toString());
+                response.set('Content-Type', 'text/xml');
+                response.send(xmlObj);
             });
         });
 
