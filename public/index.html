@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Optimize mobile viewport -->
 
-    <title>Node/Angular Todo App</title>
+    <title>COCA-COLA - MESSAGE INBOX</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- SCROLLS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <!-- load bootstrap -->
@@ -48,9 +49,13 @@
             <b>Remaining SMS - <span class="label label-info">{{ smsCounts }}</span></b>
         </div> -->
 
-        <div style="padding:10px" class="jumbotron text-center">
+        <div style="padding:10px; display:none;" class="jumbotron text-center">
             TYPE <br> COCACOLA [SPACE] YOUR MESSAGE<br> Send to <br>
             <9220592205>
+        </div>
+
+        <div class="align-items-md-center alert alert-danger" role="alert" style="text-align: center;color: white;background-color: red;font-size: 18px;font-weight: 700;">
+            COCA-COLA - MESSAGE INBOX
         </div>
 
         <!-- FORM TO SEND MESSAGE -->
@@ -94,14 +99,14 @@
 
         <div id="messages-list" class="row">
             <div class="col-sm-12 col-sm-offset-12">
-                <table class="table">
+                <table class="table table-striped">
                     <thead class="thead-inverse">
                         <tr>
                             <th>#</th>
                             <th>Message Id</th>
                             <th>Mobile Number</th>
                             <th>Message</th>
-                            <th>Status</th>
+                            <!-- <th>Status</th>-->
                             <th>Date</th>
                         </tr>
                     </thead>
@@ -111,18 +116,18 @@
                             <td>{{m.id}}</td>
                             <td>{{m.number}}</td>
                             <td>{{m.message}}</td>
-                            <td>{{m.status}}</td>
+                            <!-- <td>{{m.status}}</td>-->
                             <td>{{m.date | date: 'EEEE, MMMM M, yyyy - HH:mm:ss a'}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-		
-		<div style="padding:10px" class="jumbotron text-center">
-			XML Response
+
+        <div style="padding:10px; display:none;" class="jumbotron text-center">
+            XML Response
         </div>
-		<p>{{inboxXmlDetails}}</p>
+        <p style="padding:10px; display:none;">{{inboxXmlDetails}}</p>
 
         <div class="text-center text-muted">
             <p>A demo by <a href="#">S.P.</a></p>
